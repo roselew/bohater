@@ -67,7 +67,7 @@
             })
         }
 
-	// when click on show more expert mission
+	// when click on show more expert gifts
 
 	$(document).on('click','.edit span.showMore', function(event){
         
@@ -130,7 +130,7 @@
 			//for user mission show SAVE button
 			$('.edit').append($('<button class="save">ZAPISZ ZMIANY</button>'))
 			// and FINISH / DELETE button
-			$('.edit').append($('<button class="left infoFinish">ZAKOŃCZ</button><button class="right infoDelete">USUŃ</button>'))
+			$('.edit').append($('<button class="left infoDelete">USUŃ</button>'))
 		} else {
 			//for NOT user missions show ADD button
 			$('.edit').append($('<button class="add">DODAJ</button>'))
@@ -151,5 +151,63 @@
 	
 		return newGiftForm;
 	}
-    
+ 
+	
+
+	// BUTTONS FOR SUBMIT THE FORM
+	$(document).on('click','.edit button.add, .edit button.save',function(){
+		
+				var name=$('input[name="newGiftName"]').val();
+				var icon=$('.edit li.circle-big img').attr('src');
+				var points=$('input[name="newGiftPoints"]').val();
+		
+				if (validateNewGift()) {
+					if ($(this).hasClass('add')) {
+						$(document).trigger('addUserGift', [name, icon , points]);
+					} else {
+						var giftId=$('.edit li.circle-big').attr('name'); 
+						$(document).trigger('updateUserGift', [giftId, name, icon , points]);
+					}
+					hideEdit();
+				} else {
+					alert('Czegoś nie uzupełniłeś')
+				}
+			})
+		
+		
+			// validation before submittion
+		
+			function validateNewGift(){
+				if($('input[name="newGiftName"]').val()==""){
+					return false
+				}
+				var points=$('input[name="newGiftPoints"]').val()
+				if (points=="" || points <=0){
+					return false
+				}
+				return true
+			}
+		
+
+		$(document).on('click','.edit button.infoDelete',function(){
+			
+			var giftId=$('.edit li.circle-big').attr('name');
+			var newGift=userGifts[findUserGift(giftId)];
+			hideEdit();
+			showEdit();
+			$('.edit ul.mission-neutral').append($('<li class="circle-big">' + (newGift.icon ? '<img  src='+ newGift.icon +'>' : "") +  '</li>'))
+			$('.edit li.circle-big').attr('name',giftId)
+			$('.edit').append($('<p class="info">' + newGift.name+'</p>'))
+			$('.edit').append($('<p class ="info">Czy na pewno chcesz usunąć ten prezent? </p>'))
+			$('.edit').append($('<button class="deleteGift">USUŃ</button>'))
+		})
+		
+		$(document).on('click','.edit button.deleteGift',function(){
+		
+			var giftId=$('.edit li.circle-big').attr('name');
+			var newGift=userGifts[findUserGift(giftId)];
+			$(document).trigger('deleteUserGift',giftId)
+			hideEdit();
+		})
+
 $(document).trigger('showGifts')

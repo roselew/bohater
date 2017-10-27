@@ -9,10 +9,21 @@
 	text-align: center;	
 	font: $font_big_size $font_reg_family; 
 	line-height: 1.5*$mission_small_size;
-
+	
 	//week name
 	a{ 	display: inline-block;
 		font: $font_big_size $font_reg_family; 
+		position:relative;
+		&::after{
+			content: '';
+			height: 50px;
+			width: 50px;
+			position: absolute;
+			top: -25px;
+			right: -50px;
+
+			background: url(../assets/calendar4.svg) top 20% center no-repeat; background-size: 100%;
+		}
 	}
 	//buttons previous and next week
 	span{
@@ -57,7 +68,7 @@
 		width: ($odznaki_left - $odznaki_right);
 		height: $day_height;
 
-		border-radius: 50px;
+		border-radius: 30px;
 		color: $color_text_kid;
 		font: $font_big_size $font_reg_family;
 		text-align: center;
@@ -208,8 +219,8 @@ ul.mission-done {
 	.show-all {
 	 	background-image: url(../assets/all_missions.svg);	
 	 	border-color: $color_base;
-	 	border-top-left-radius: 5.0rem;
-	 	border-bottom-left-radius: 5.0rem;
+	 	border-top-left-radius: 3.0rem;
+	 	border-bottom-left-radius: 3.0rem;
 		span{background-color: $color_base;}
 		&:hover{background-color: rgba($color_base,0.3);}
 	}
@@ -236,8 +247,8 @@ ul.mission-done {
 	.show-done {
 		border-color: $color_done;
 		background-image: url(../assets/like.svg);	
-		border-top-right-radius: 5.0rem;
-	 	border-bottom-right-radius: 5.0rem;
+		border-top-right-radius: 3.0rem;
+	 	border-bottom-right-radius: 3.0rem;
 		span{background-color: $color_done;}
 		&:hover{background-color: rgba($color_done,0.3);}
 	}

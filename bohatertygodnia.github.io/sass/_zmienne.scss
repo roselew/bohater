@@ -1,7 +1,7 @@
 //colors definition
 $color_base:#008aff; // base color, neutral for missions
 $color_base2: #C0392B; // second base color (logo etc.)
-$color_back_kid: #0C1A3F; // background for kids 
+$color_back_kid: #01154c; //#0C1A3F; // background for kids 
 $color_back_parent: #E4E4E4; // background for parents
 $color_dark_grey: #777B88; // darker than back_parent
 $color_light_grey: #F5F5F5; // lighter than back_parent
@@ -20,8 +20,9 @@ $color_alert: rgba(mix($color_back_kid,$color_dark_grey,50%),0.95);
     src: url(../assets/IntroRustH1-Base.otf);
 }
 
+
 $font_title_family: 'IntroRustH1-Base', cursive;
-$font_title_size: 9.0rem;
+$font_title_size: 8.0rem;
 
 $font_reg_family: 'Lato', sans_serif;
 $font_big_size: 4.0rem;
